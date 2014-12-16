@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html data-ng-app="TodoApp">
+    <head>
+        <title>Todo</title>
+        <link type="text/css" href="lib/css/bootstrap-combined.min.css" rel="stylesheet"/>
+        <link type="text/css" href="css/app.css" rel="stylesheet" />
+
+        <script type="text/javascript" src="lib/js/jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="lib/js/angular.js"></script>
+        <script type="text/javascript" src="lib/js/ui-bootstrap-tpls-0.12.0.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+    </head>
+
+    <body data-ng-controller="TodoCtrl">
+        <section class="container">
+            <div class="row">
+                <article class="span4 offset4">
+                    <h3>Todo List</h3>
+
+                    <div class="alert alert-success" data-ng-show="todoList.length == 0">
+                        <strong>Nice!</strong> You have nothing Todo
+                    </div>
+
+                    <div data-ng-hide="todoList.length == 0">
+                        <ul class="todo-list" data-ng-hide="todoList.length == 0">
+                            <li data-ng-repeat="todo in todoList" data-ng-class="{'todo-complete':todo.complete}">
+                                <input type="checkbox" data-ng-model="todo.complete" data-ng-change="onCompleteToggle(todo)" data-tooltip="Complete?" />
+                                <span>{{todo.description}}</span>
+                                <button class="todo-list-btn btn btn-link pull-right" type="button" data-ng-click="onDeleteTodoClick(todo)" data-tooltip="Delete"><i class="icon-remove"></i></button>
+                                <button class="todo-list-btn btn btn-link pull-right" type="button" data-ng-click="onEditTodoClick(todo)" data-tooltip="Edit"><i class="icon-pencil"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <form name="addTodoForm" novalidate="" data-ng-submit="onAddTodo();">
+                            <input class="todo-input" type="text" data-ng-model="addTodo.description" data-tooltip="What would you like Todo?" />
+                            <button class="btn btn-primary" type="submit" >Add</button>
+                        </form>
+                    </div>
+
+                    <div class="well">
+                        <div class="pull-left">
+                            <span>Remaining: </span>
+                            <span class="badge badge-important">{{countRemaining}}</span>
+                        </div>
+                        <div class="pull-right">
+                            <span>Complete: </span>
+                            <span class="badge badge-success">{{countComplete}}</span>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success" data-ng-show="countComplete > 0 && countRemaining == 0">
+                        <strong>Congrats!</strong> You are the definition of productivity
+                    </div>
+
+                    <div class="alert alert-error" data-ng-show="crud.error">
+                        <p><strong>Error!</strong></p>
+                        <p>{{crud.error}}</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+        
+        <br class="clearfix"/>
+        
+        <footer class="container">
+            <div class="row">
+                <div class="span4 offset4">
+                    <p class="">A CRUD demo brought to you by <a href="http://www.coyotewolf.com/" target="_blank">Ryan Boros.</a></p>
+                </div>
+            </div>
+        </footer>
+            
+    </body>
+</html>

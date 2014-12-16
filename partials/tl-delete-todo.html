@@ -1,0 +1,17 @@
+<div class="modal">
+    <div class="modal-header">
+        <button class="close" type="button" data-ng-click="onCloseClick()">&times;</button>
+
+        <h4>Delete Todo</h4>
+    </div>
+    <div class="modal-body">
+        <p><strong>Are you sure you wish to delete this item?</strong></p>
+        <div class="well">
+            {{deleteDescription}}
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link" type="button" data-ng-click="onCancelClick()">Cancel</button>
+        <button class="btn btn-primary" type="button" data-ng-click="onDeleteItemClick()">Delete</button>
+    </div>
+</div>

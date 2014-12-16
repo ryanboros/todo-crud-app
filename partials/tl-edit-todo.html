@@ -1,0 +1,20 @@
+<div class="modal">
+    <div class="modal-header">
+        <button class="close" type="button" data-ng-click="onCloseClick()">&times;</button>
+
+        <h4>Edit Todo</h4>
+    </div>
+    <div class="modal-body">
+        <form name="editTodoForm">
+            <input class="todo-input" name="desc" type="text" data-ng-model="editDescription" data-ng-required="true" data-ng-minlength="2" />
+        </form>
+
+        <div class="alert alert-error" data-ng-show="editTodoForm.desc.$error.required || editTodoForm.desc.$error.minlength">
+            <strong>Invalid</strong> Please enter a description of what Todo
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-link" type="button" data-ng-click="onCancelClick()">Cancel</button>
+        <button class="btn btn-primary" type="button" data-ng-click="onSaveEditClick()">Save</button>
+    </div>
+</div>
